@@ -1,3 +1,0 @@
-#!/bin/bash
-
-s-copy $@ 2>&1 >> ~/test.log 

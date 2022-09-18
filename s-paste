@@ -19,9 +19,17 @@ function nameAtDest() {
 
 LOG=$HOME/test.log
 
-IFS=$'\n'
-paths=$( cat $HOME/.paths_to_link.txt )
+# Get file list
+IFS=$'\r\n'
+paths=$( wl-paste )
 echo paths: $paths | tee $LOG
+
+case "$1" in
+	--hardlink) flags="";;
+	--symlink) flags="-s";;
+	*) echo "Unrecognised first argument"; exit 1;
+esac
+
 
 dest="$PWD"
 
@@ -29,5 +37,5 @@ for p in $paths; do
 	filename="$(basename "$p")"
 	destination=$(nameAtDest "$dest" "$filename")
 	echo "Creating $destination" | tee $LOG
-	ln -s "$p" "$destination" | tee $LOG
-done 
+	ln $flags "$p" "$destination" | tee $LOG
+done
