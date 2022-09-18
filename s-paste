@@ -1,8 +1,24 @@
 #!/bin/bash
 
+function nameAtDest() {
+	folder="$1"
+	filename="$2"
+	destination="${folder}/${filename}"
+
+	basename="${filename%%.*}"
+	extension="${filename##*.}"
+
+	i=0
+	while [ -f $destination ]
+	do
+		destination="$1/${basename}_${i}.${extension}"
+		i=$(( i + 1 ))
+	done
+	echo "$destination"
+}
+
 LOG=$HOME/test.log
 
-echo $(date) pwd=$(pwd) "$@" | tee $LOG
 IFS=$'\n'
 paths=$( cat $HOME/.paths_to_link.txt )
 echo paths: $paths | tee $LOG
@@ -10,6 +26,8 @@ echo paths: $paths | tee $LOG
 dest="$PWD"
 
 for p in $paths; do
-	echo "$p"
-	ln -s "$p" "$dest" | tee $LOG
+	filename="$(basename "$p")"
+	destination=$(nameAtDest "$dest" "$filename")
+	echo "Creating $destination" | tee $LOG
+	ln -s "$p" "$destination" | tee $LOG
 done 
