@@ -1,0 +1,9 @@
+F4 Log
+<Control><Shift>C SymlinkCopy
+<Control><Shift>V SymlinkPaste
+
+; Commented lines must have a space after the semicolon
+; Examples of other key combinations:
+; <Control>F12 Terminal
+; <Alt>F12 Terminal
+; <Shift>F12 Terminal
