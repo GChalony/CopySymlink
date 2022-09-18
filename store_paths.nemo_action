@@ -1,0 +1,11 @@
+[Nemo Action]
+Active=true
+Name=Sto_re selected paths
+Comment=Store %F to be linked later
+Exec=store_paths %F
+Icon-Name=dialog-yes
+Selection=notnone
+Extensions=any
+Quote=double
+
+#Terminal=true

@@ -1,0 +1,17 @@
+#!/bin/bash
+
+#echo $(date) pwd=$(pwd) "$@" >> ~/test.log
+IFS=$'\n'
+paths=$( cat /home/gregnix/.paths_to_link.txt )
+
+dest="$1"
+if ![ -d "$dest" ]
+then
+	dest="$(dirname /home/gregnix/Pictures/temp)"
+fi
+#echo "Linking to $dest" >> ~/test.log
+
+for p in $paths; do
+	echo "$p"
+	ln -s "$p" "$1"
+done 

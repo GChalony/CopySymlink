@@ -1,0 +1,11 @@
+[Nemo Action]
+Active=true
+Name=Sym_link pre-stored paths here
+Comment=Symlink paths here
+Exec=link_stored %F
+Icon-Name=store
+Selection=any
+Extensions=any;
+# Dependencies=gedit;
+Quote=double
+
